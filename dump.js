@@ -1,4 +1,4 @@
-booksList = [
+let booksList = [
   {
     id: 0,
     title: "דדי גמדי מצייר ציור",

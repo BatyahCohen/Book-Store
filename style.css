@@ -1,0 +1,55 @@
+.store-container{
+width: 100%;
+}
+
+.main{
+    display: flex;
+}
+
+.products-container{
+    background-color: antiquewhite;
+    width: 100%;
+}
+
+.product-card-title{
+    display: grid;
+    grid-template-columns: 5% 40% 25% 10% 10% 10%;  
+}
+
+.product-card{
+    display: grid;
+    grid-template-columns: 5% 40% 25% 10% 10% 10%; 
+}
+
+.form{
+    background-color: bisque;
+    display: none;
+}
+
+.navigation{
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.set{
+    display: none;
+}
+
+.rate{
+    display: none;
+}
+
+.show{
+    display:block;
+}
+
+.product-card .book-title{
+    cursor: pointer;
+}
+
+
