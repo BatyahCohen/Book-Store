@@ -7,26 +7,41 @@ function showData(data) {
             <div>action</div>
           </div>`;
 
-  data.map((book) => {
-    dataToShow += `
-          <div class="product-card">
-            <div>${book.id}</div>
-            <div onclick="showRateBook(${book.id})" class="book-title">${book.title}</div>
-            <div>price: ${book.price}</div>
-            <div>rate: ${book.rate}</div>
-            <button onclick="showSetBook(${book.id})">update</button>
-            <button onclick="deleteBook(${book.id})">🗑️</button>
-          </div>
-        `;
-  });
+  dataToShow += showByPage(Gpage);
+
+  navigationButtons=getNavigationButtons()
 
   dataToShow += `          <div class="navigation">
-            <button>back</button>
-            <div class="page-container"></div>
-            <button>next</button>
+            <button onclick="changePage(--Gpage)">back</button>
+            <div class="page-container">${navigationButtons}</div>
+            <button onclick="changePage(++Gpage)">next</button>
           </div>`;
 
   container.innerHTML = dataToShow;
+}
+
+function showByPage(page) {
+  let move = (page - 1) * 5;
+  dataToShow = ``;
+  for (let i = 0; i < 5; i++) {
+    if (GbookList[i + move]) {
+      dataToShow += `
+        <div class="product-card">
+          <div>${GbookList[i + move].id}</div>
+          <div onclick="showRateBook(${
+            GbookList[i + move].id
+          })" class="book-title">${GbookList[i + move].title}</div>
+          <div>price: ${GbookList[i + move].price}</div>
+          <div>rate: ${GbookList[i + move].rate}</div>
+          <button onclick="showSetBook(${
+            GbookList[i + move].id
+          })">update</button>
+          <button onclick="deleteBook(${GbookList[i + move].id})">🗑️</button>
+        </div>
+      `;
+    }
+  }
+  return dataToShow;
 }
 
 function showRateBook(id) {
@@ -35,17 +50,20 @@ function showRateBook(id) {
 
   book = GbookList.find((i) => i.id === id);
 
+  document.getElementById("rateId").innerText = book.id;
   document.getElementById("rateTitle").innerText = book.title;
   document.getElementById("ratePrice").innerText = book.price;
   document.getElementById("rateImg").src = book.img;
   document.getElementById("rateRate").value = book.rate;
 }
 
-function hideRateBook(id) {
+function hideRateBook(event) {
+    event.preventDefault();
+
   showRate = document.getElementsByClassName("rate")[0];
   showRate.classList.remove("show");
 
-  rateBook(id);
+  rateBook(document.getElementById("rateId").innerText);
 }
 
 function showSetBook(id) {
@@ -59,7 +77,6 @@ function showSetBook(id) {
   document.getElementById("setPrice").value = book.price;
   document.getElementById("setImg").src = book.img;
   document.getElementById("setImgText").value = book.img;
-
 }
 
 function hideSetBook(event, id) {
@@ -83,4 +100,19 @@ function hideAddBook(event) {
   showRate.classList.remove("show");
 
   addBook();
+}
+
+function getNavigationButtons(){
+    let buttons = ``;
+    for(let i=1; i<=Math.ceil(GbookList.length/5); i++){
+        buttons += `<button onclick="changePage(${i})">${i}</button>`
+    }
+    return buttons;
+}
+
+function changePage(page){
+    if(page<0 || page>Math.ceil(GbookList.length/5))
+        return
+    Gpage = page;
+    showData(GbookList);
 }

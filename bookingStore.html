@@ -6,17 +6,22 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
   </head>
- 
+
   <body onload="loadData()">
-   
-    <div class="store-container">    
-        <div class="nav">
+    <div class="store-container">
+      <div class="nav">
         <button onclick="showAddBook()">+New book</button>
-        <button onclick="loadData()">Load data</button>  
-    </div>
+        <div>
+          <button onclick="loadData()">Load data</button>
+
+          <select id="languageSelect" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+          </select>
+        </div>
+      </div>
 
       <div class="main">
-
         <div class="products-container"></div>
 
         <form class="form" onsubmit="hideAddBook(event)">
@@ -29,42 +34,41 @@
           <label>book image</label>
           <input type="text" id="formImg" />
           <br /><br />
-          <button type="submit" >Add Book</button>
+          <button type="submit">Add Book</button>
         </form>
 
-        <form class="rate">
+        <form class="rate" onsubmit="hideRateBook(event)">
+          <label>Book Id</label>
+          <div id="rateId"></div>
           <div id="rateTitle">title</div>
-          <img id="rateImg">
+          <img id="rateImg" />
           <div id="ratePrice">price</div>
           <div>rate this book:</div>
-          <input type="number" min="0" max="10" id="rateRate"/>
-          <button type="submit" onclick="hideSateBook()">✅</button>
+          <input type="number" min="0" max="10" id="rateRate" />
+          <button type="submit">✅</button>
         </form>
 
         <form class="set" onsubmit="hideSetBook(event)">
-            <label>Book Id</label>
-            <div id="setId"></div>
-            <label>book name</label>
-            <input type="text" id="setTitle"/>
-            <br /><br />
-            <label>book price</label>
-            <input type="number" id="setPrice"/>
-            <br /><br />
-            <label>book image</label>
-            <img id="setImg">
-            <input type="text" id="setImgText" />
-            <br /><br />
-            <button type="submit" >update</button>
-          </form>
-
+          <label>Book Id</label>
+          <div id="setId"></div>
+          <label>book name</label>
+          <input type="text" id="setTitle" />
+          <br /><br />
+          <label>book price</label>
+          <input type="number" id="setPrice" />
+          <br /><br />
+          <label>book image</label>
+          <img id="setImg" />
+          <input type="text" id="setImgText" />
+          <br /><br />
+          <button type="submit">update</button>
+        </form>
       </div>
-     
-    </div> 
+    </div>
 
     <script src="dump.js"></script>
     <script src="model.js"></script>
     <script src="view.js"></script>
     <script src="controler.js"></script>
-
   </body>
 </html>
