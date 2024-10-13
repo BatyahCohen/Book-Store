@@ -41,6 +41,15 @@ function deleteBook(id) {
 
   updateLocalStorage();
   showData(GbookList);
+
+  if(document.getElementById("rate").classList.contains("show"))
+   {
+    console.log("rate book removed")
+     document.getElementById("rate").classList.remove("show")
+   }
+
+  if(document.getElementById("set").classList.contains("show"))
+    document.getElementById("set").classList.remove("show")
 }
 
 function getBook(id) {
@@ -89,42 +98,8 @@ function sort(type) {
 function changeLanguage() {
   const selectedLanguage = document.getElementById("languageSelect").value;
 
-  language = selectedLanguage === "en" ? 0 : 1;
+  language = selectedLanguage == "en" ? 0 : 1;
 
-  //updateUIText();
+  change();
 }
 
-//פונקציה שמחליפה שפה!!!!
-// function updateUIText() {
-
-//   document.querySelector(".nav button").innerText =
-//     translationMatrix[language][6];
-
-//   document.querySelector(".nav div button").innerText =
-//     translationMatrix[language][7];
-
-//   let navigationButtons = document.querySelectorAll(".navigation button");
-//   navigationButtons[0].innerText = translationMatrix[language][4];
-//   navigationButtons[4].innerText = translationMatrix[language][5];
-
-//   // עדכון התוויות של הטפסים (form)
-//   document.querySelector("form.form label:nth-child(1)").innerText =
-//     translationMatrix[language][1]; // book name or כותרת
-//   //document.querySelector("form.form label:nth-child(4)").innerText = translationMatrix[language][2]; // book price or מחיר
-//   //document.querySelector("form.form label:nth-child(7)").innerText = translationMatrix[language][3]; // book image or תמונה
-   
-
-//   // עדכון התוויות של טפסי הדרוג (rate)
-//   document.querySelector("form.rate label").innerText =
-//     translationMatrix[language][8]; // Book Id or מספר מזהה של הספר
-//   document.querySelector("form.rate div:nth-child(5)").innerText =
-//     translationMatrix[language][9]; // rate this book: or דרג את הספר
-
-//   // עדכון טופס העריכה (set)
-//   document.querySelector("form.set label:nth-child(1)").innerText =
-//     translationMatrix[language][8]; // Book Id or מספר מזהה של הספר
-//   document.querySelector("form.set label:nth-child(2)").innerText =
-//     translationMatrix[language][1]; // book name or כותרת
-//   document.querySelector("form.set label:nth-child(5)").innerText =
-//     translationMatrix[language][2]; // book price or מחיר
-// }

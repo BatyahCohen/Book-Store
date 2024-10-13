@@ -1,55 +1,170 @@
-.store-container{
-width: 100%;
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
 }
 
-.main{
-    display: flex;
+.store-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.products-container{
-    background-color: antiquewhite;
-    width: 100%;
-}
-
-.product-card-title{
-    display: grid;
-    grid-template-columns: 5% 40% 25% 10% 10% 10%;  
-}
-
-.product-card{
-    display: grid;
-    grid-template-columns: 5% 40% 25% 10% 10% 10%; 
-}
-
-.form{
-    background-color: bisque;
-    display: none;
-}
-
-.navigation{
+.nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
 }
 
-.nav{
-    display: flex;
-    justify-content: space-between;
-}
-
-.set{
-    display: none;
-}
-
-.rate{
-    display: none;
-}
-
-.show{
-    display:block;
-}
-
-.product-card .book-title{
+.nav button, .nav select {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
+.nav button:hover, .nav select:hover {
+    background-color: #45a049;
+}
 
+.products-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-card-title, .product-card {
+    display: grid;
+    grid-template-columns: 5% 40% 15% 10% 15% 15%;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.product-card-title {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 15px 0;
+}
+
+.product-card {
+    padding: 15px 0;
+}
+
+/* עיצוב הכפתורי עריכה ומחיקה שלא ייראו כמו כפתור */
+.product-card .edit-button,
+.product-card .delete-button {
+    background: none; /* אין צבע רקע */
+    border: none; /* אין גבול */
+    color: #2196F3; /* צבע הטקסט */
+    cursor: pointer; /* סמן עכבר משתנה */
+    padding: 0; /* אין ריפוד */
+    text-decoration: underline; /* קו תחתון */
+    font-size: 16px; /* גודל טקסט */
+}
+
+.product-card .edit-button:hover,
+.product-card .delete-button:hover {
+    text-decoration: none; /* הוסר קו תחתון בעת ריחוף */
+}
+
+.book-title {
+    cursor: pointer;
+    color: #2196F3;
+    font-weight: bold;
+}
+
+.book-title:hover {
+    text-decoration: underline;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.navigation button {
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.navigation button:hover {
+    background-color: #555;
+}
+
+.form, .rate, .set {
+    display: none;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.form.show, .rate.show, .set.show {
+    display: block;
+}
+
+.form label, .rate label, .set label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form input, .rate input, .set input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+img {
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+
+.page-container button {
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.page-container button:hover {
+    background-color: #0056b3;
+}
