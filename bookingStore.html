@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Book Store</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -39,21 +39,33 @@
         </form>
 
         <form id="rate", class="rate" onsubmit="hideRateBook(event)">
-          <label id="rate-id">Book Id</label>
           <div id="rateId"></div>
-          <div id="rateTitle">title</div>
+          <h3 id="rateTitle">title</h3>
           <img id="rateImg"/><br>
           <label id="rate-price">Book price:</label>
           <div id="ratePrice">price</div>
           <br>
-          <div id="rate-rate">rate this book:</div>
-          <input type="number" min="0" max="10" id="rateRate" />
+          <div class="star-rating">
+            <input type="radio" id="star5" name="rating" value="5" onclick="saveRate(5)">
+            <label for="star5">★</label>
+      
+            <input type="radio" id="star4" name="rating" value="4" onclick="saveRate(4)">
+            <label for="star4">★</label>
+      
+            <input type="radio" id="star3" name="rating" value="3" onclick="saveRate(3)">
+            <label for="star3">★</label>
+      
+            <input type="radio" id="star2" name="rating" value="2" onclick="saveRate(2)">
+            <label for="star2">★</label>
+      
+            <input type="radio" id="star1" name="rating" value="1" onclick="saveRate(1)">
+            <label for="star1">★</label>
+          </div>
           <button type="submit">V</button>
         </form>
 
         <form id="set" class="set" onsubmit="hideSetBook(event)">
-          <h2 id="set-book">Set book:</h2>
-          <label id="set-id">Book Id</label>
+          <div id="set-id"></div>
           <div id="setId"></div>
           <label id="set-title">book name</label>
           <input type="text" id="setTitle" name="setTitle"/>

@@ -33,7 +33,7 @@ function showByPage(page) {
             GbookList[i + move].id
           })" class="book-title">${GbookList[i + move].title}</div>
           <div>${GbookList[i + move].price}</div>
-          <div>${GbookList[i + move].rate}</div>
+          <div class="star-container">  ${addStars(GbookList[i + move].rate)}</div>
           <div class="update-button" onclick="showSetBook(${
             GbookList[i + move].id
           })">update</div>
@@ -56,11 +56,12 @@ function showRateBook(id) {
 
   book = GbookList.find((i) => i.id === id);
 
-  document.getElementById("rateId").innerText = book.id;
+  document.getElementById("rateId").value = book.id;
   document.getElementById("rateTitle").innerText = book.title;
   document.getElementById("ratePrice").innerText = book.price;
   document.getElementById("rateImg").src = book.img;
-  document.getElementById("rateRate").value = book.rate;
+
+  highlightRating(book.rate);
 }
 
 function hideRateBook(event) {
@@ -72,7 +73,7 @@ function hideRateBook(event) {
   productContainer = document.getElementsByClassName("products-container")[0];
   productContainer.classList.remove("products-container-rate");
 
-  rateBook(document.getElementById("rateId").innerText);
+  rateBook(document.getElementById("rateId").value);
 }
 
 function showSetBook(id) {
@@ -81,7 +82,7 @@ function showSetBook(id) {
 
   book = GbookList.find((i) => i.id === id);
 
-  document.getElementById("setId").innerText = book.id;
+  document.getElementById("set-id").value = book.id;
   document.getElementById("setTitle").value = book.title;
   document.getElementById("setPrice").value = book.price;
   document.getElementById("setImg").src = book.img;
@@ -94,7 +95,7 @@ function hideSetBook(event, id) {
   showRate = document.getElementsByClassName("set")[0];
   showRate.classList.remove("show");
 
-  setBook(document.getElementById("setId").innerText,event);
+  setBook(document.getElementById("set-id").value,event);
 }
 
 function showAddBook() {
@@ -119,10 +120,29 @@ function getNavigationButtons() {
   return buttons;
 }
 
+function addStars(rate){
+  let stars=``
+  for (let i = 0; i <rate; i++) {
+    stars += `<div>★</div>`;
+  }
+  return stars;
+}
+
 function changePage(page) {
   if (page < 1 || page > Math.ceil(GbookList.length / 5)) return;
   Gpage = page;
   showData(GbookList);
+}
+
+function highlightRating(rating) {
+  for (let i = 1; i <= 5; i++) {
+      const star = document.getElementById(`star${i}`);
+      if (i <= rating) {
+          star.checked = true; 
+      } else {
+          star.checked = false;
+      }
+  }
 }
 
 function change() {
@@ -161,17 +181,11 @@ function change() {
   document.getElementById("form-book-submit").innerText =
     translationMatrix[language][12];
 
-  document.getElementById("rate-id").innerText =
-    translationMatrix[language][13];
   document.getElementById("rateTitle").innerText =
     translationMatrix[language][9];
   document.getElementById("rate-price").innerText =
     translationMatrix[language][10];
-  document.getElementById("rate-rate").innerText =
-    translationMatrix[language][14];
 
-  document.getElementById("set-book").innerText =
-    translationMatrix[language][16];
   document.getElementById("set-title").innerText =
     translationMatrix[language][9];
   document.getElementById("set-price").innerText =
@@ -181,3 +195,5 @@ function change() {
   document.getElementById("set-update").innerText =
     translationMatrix[language][8];
 }
+
+

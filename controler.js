@@ -80,8 +80,8 @@ function buildSetBook(id,event) {
 
 function rateBook(id) {
   bookToChange = GbookList.find((i) => i.id == id);
-
-  bookToChange.rate = document.getElementById("rateRate").value;
+  
+  bookToChange.rate = document.querySelector(".star-rating input:checked").value
 
   updateLocalStorage();
   showData(GbookList);
@@ -103,5 +103,9 @@ function changeLanguage() {
   language = selectedLanguage == "en" ? 0 : 1;
 
   change();
+}
+
+function saveRate(id){
+  document.querySelector(".star-rating input:checked").value = id;
 }
 
