@@ -11,12 +11,12 @@ function updateLocalStorage() {
   localStorage.setItem("bookList", JSON.stringify(GbookList));
 }
 
-function setBook(id) {
+function setBook(id,event) {
   bookToChange = GbookList.find((i) => i.id == id);
 
-  book = buildSetBook(bookToChange.id);
+  book = buildSetBook(bookToChange.id,event);
 
-  const updatedBook = buildSetBook(id);
+  const updatedBook = buildSetBook(id,event);
 
   if (bookToChange) {
     bookToChange.title = updatedBook.title;
@@ -28,8 +28,8 @@ function setBook(id) {
   showData(GbookList);
 }
 
-function addBook() {
-  book = buildBook();
+function addBook(event) {
+  book = buildBook(event);
   GbookList.push(book);
 
   updateLocalStorage();
@@ -56,22 +56,24 @@ function getBook(id) {
   return GbookList.find((i) => i.id === id);
 }
 
-function buildBook() {
+function buildBook(event) {
+  form=event.target
   return {
     id: GbookList[GbookList.length - 1].id + 1,
-    title: document.getElementById("formTitle").value,
-    price: document.getElementById("formPrice").value,
-    img: document.getElementById("formImg").value,
+    title: form.formTitle.value,
+    price: form.formPrice.value,
+    img: form.formImg.value,
     rate: 0,
   };
 }
 
-function buildSetBook(id) {
+function buildSetBook(id,event) {
+  form=event.target
   return {
     id: id,
-    title: document.getElementById("setTitle").value,
-    price: document.getElementById("setPrice").value,
-    img: document.getElementById("setImgText").value,
+    title: form.setTitle.value,
+    price: form.setPrice.value,
+    img: form.setImgText.value,
     rate: 0,
   };
 }

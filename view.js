@@ -9,7 +9,7 @@ function showData(data) {
 
   dataToShow += showByPage(Gpage);
 
-  navigationButtons=getNavigationButtons()
+  navigationButtons = getNavigationButtons();
 
   dataToShow += `          <div class="navigation">
             <button id="back-button" onclick="changePage(--Gpage)">back</button>
@@ -18,7 +18,7 @@ function showData(data) {
           </div>`;
 
   container.innerHTML = dataToShow;
-  changeLanguage()
+  changeLanguage();
 }
 
 function showByPage(page) {
@@ -37,7 +37,9 @@ function showByPage(page) {
           <div class="update-button" onclick="showSetBook(${
             GbookList[i + move].id
           })">update</div>
-          <div onclick="deleteBook(${GbookList[i + move].id})">🗑️</div>
+          <div class="delete-button" onclick="deleteBook(${
+            GbookList[i + move].id
+          })">🗑️</div>
         </div>
       `;
     }
@@ -49,6 +51,9 @@ function showRateBook(id) {
   showRate = document.getElementsByClassName("rate")[0];
   showRate.classList.add("show");
 
+  productContainer = document.getElementsByClassName("products-container")[0];
+  productContainer.classList.add("products-container-rate");
+
   book = GbookList.find((i) => i.id === id);
 
   document.getElementById("rateId").innerText = book.id;
@@ -59,10 +64,13 @@ function showRateBook(id) {
 }
 
 function hideRateBook(event) {
-    event.preventDefault();
+  event.preventDefault();
 
   showRate = document.getElementsByClassName("rate")[0];
   showRate.classList.remove("show");
+
+  productContainer = document.getElementsByClassName("products-container")[0];
+  productContainer.classList.remove("products-container-rate");
 
   rateBook(document.getElementById("rateId").innerText);
 }
@@ -86,7 +94,7 @@ function hideSetBook(event, id) {
   showRate = document.getElementsByClassName("set")[0];
   showRate.classList.remove("show");
 
-  setBook(document.getElementById("setId").innerText);
+  setBook(document.getElementById("setId").innerText,event);
 }
 
 function showAddBook() {
@@ -100,22 +108,21 @@ function hideAddBook(event) {
   showRate = document.getElementsByClassName("form")[0];
   showRate.classList.remove("show");
 
-  addBook();
+  addBook(event);
 }
 
-function getNavigationButtons(){
-    let buttons = ``;
-    for(let i=1; i<=Math.ceil(GbookList.length/5); i++){
-        buttons += `<button onclick="changePage(${i})">${i}</button>`
-    }
-    return buttons;
+function getNavigationButtons() {
+  let buttons = ``;
+  for (let i = 1; i <= Math.ceil(GbookList.length / 5); i++) {
+    buttons += `<button onclick="changePage(${i})">${i}</button>`;
+  }
+  return buttons;
 }
 
-function changePage(page){
-    if(page<1 || page>Math.ceil(GbookList.length/5))
-        return
-    Gpage = page;
-    showData(GbookList);
+function changePage(page) {
+  if (page < 1 || page > Math.ceil(GbookList.length / 5)) return;
+  Gpage = page;
+  showData(GbookList);
 }
 
 function change() {
@@ -141,35 +148,36 @@ function change() {
   updateButtons = document.getElementsByClassName("update-button");
   Array.from(updateButtons).forEach((b) => {
     b.innerText = translationMatrix[language][8];
-
-    document.getElementById("form-book-title").innerText =
-      translationMatrix[language][9];
-    document.getElementById("form-book-price").innerText =
-      translationMatrix[language][10];
-    document.getElementById("form-book-img").innerText =
-      translationMatrix[language][11];
-    document.getElementById("form-book-submit").innerText =
-      translationMatrix[language][12];
-
-    document.getElementById("rate-id").innerText =
-      translationMatrix[language][13];
-    document.getElementById("rateTitle").innerText =
-      translationMatrix[language][9];
-    document.getElementById("rate-price").innerText =
-      translationMatrix[language][10];
-    document.getElementById("rate-rate").innerText =
-      translationMatrix[language][14];
-
-    document.getElementById("set-id").innerText =
-      translationMatrix[language][13];
-    document.getElementById("set-title").innerText =
-      translationMatrix[language][9];
-    document.getElementById("set-price").innerText =
-      translationMatrix[language][10];
-    document.getElementById("set-img").innerText =
-      translationMatrix[language][11];
-    document.getElementById("set-update").innerText =
-      translationMatrix[language][8];
   });
-}
 
+  document.getElementById("add-book").innerText =
+    translationMatrix[language][15];
+  document.getElementById("form-book-title").innerText =
+    translationMatrix[language][9];
+  document.getElementById("form-book-price").innerText =
+    translationMatrix[language][10];
+  document.getElementById("form-book-img").innerText =
+    translationMatrix[language][11];
+  document.getElementById("form-book-submit").innerText =
+    translationMatrix[language][12];
+
+  document.getElementById("rate-id").innerText =
+    translationMatrix[language][13];
+  document.getElementById("rateTitle").innerText =
+    translationMatrix[language][9];
+  document.getElementById("rate-price").innerText =
+    translationMatrix[language][10];
+  document.getElementById("rate-rate").innerText =
+    translationMatrix[language][14];
+
+  document.getElementById("set-book").innerText =
+    translationMatrix[language][16];
+  document.getElementById("set-title").innerText =
+    translationMatrix[language][9];
+  document.getElementById("set-price").innerText =
+    translationMatrix[language][10];
+  document.getElementById("set-img").innerText =
+    translationMatrix[language][11];
+  document.getElementById("set-update").innerText =
+    translationMatrix[language][8];
+}
